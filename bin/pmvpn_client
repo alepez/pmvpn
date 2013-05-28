@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'pmvpn'
+
+client = PMVpn::Client.new
+client.method(ARGV[0]).call(ARGV.drop(1))
