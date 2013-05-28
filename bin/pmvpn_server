@@ -3,4 +3,8 @@
 require 'pmvpn/server'
 
 server = PMVpn::Server.new
-server.method(ARGV[0]).call(ARGV.drop(1))
+if ARGV.length > 0 && server.respond_to?(ARGV[0])
+  server.method(ARGV[0]).call(ARGV.drop(1))
+else
+  server.help
+end

@@ -1,6 +1,6 @@
 module PMVpn
   class Client
-    def help
+    def help(params)
       puts <<-eos
 Poor Man Vpn Client
 eos

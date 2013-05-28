@@ -3,4 +3,8 @@
 require 'pmvpn/client'
 
 client = PMVpn::Client.new
-client.method(ARGV[0]).call(ARGV.drop(1))
+if ARGV.length > 0 && client.respond_to?(ARGV[0])
+  client.method(ARGV[0]).call(ARGV.drop(1))
+else
+  client.help
+end
