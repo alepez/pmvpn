@@ -22,6 +22,10 @@ module PMVpn
       end
       print "+-----+----------------------+\n"
     end
+    
+    def clear(params = nil)
+      @slots.clear
+    end
 
     # Show usage
     def help(params = nil)

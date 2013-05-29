@@ -27,11 +27,11 @@ module PMVpn
     def has_name(name)
       @children.select { |slot| slot.name == name }.size > 0
     end
-    
+
     def has_id(id)
       (@children.select { |slot| slot.id == id }).size > 0
     end
-    
+
     # Return an hash with next free slot settings
     def add(name)
       raise ArgumentError, "A slot with name = '#{name}' already exists" if has_name(name)
@@ -57,6 +57,11 @@ module PMVpn
       @children.delete_if { |slot| slot.name == name }
       save
       to_remove
+    end
+
+    def clear
+      @children = []
+      save
     end
 
     private
