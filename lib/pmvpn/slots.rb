@@ -14,15 +14,27 @@ module PMVpn
       @server = server
     end
 
+    # Return an array with slots data
+    def data
+      @children.collect { |slot| slot.data }
+    end
+
     # Save to database
     def save
-      data = []
-      @children.each { |slot| data << slot.data }
       YAML::dump(data, File.open(@@db, "w"))
     end
 
+    def has_name(name)
+      @children.select { |slot| slot.name == name }.size > 0
+    end
+    
+    def has_id(id)
+      (@children.select { |slot| slot.id == id }).size > 0
+    end
+    
     # Return an hash with next free slot settings
     def add(name)
+      raise ArgumentError, "A slot with name = '#{name}' already exists" if has_name(name)
       new_id = @children.empty? ?  1 : @children.last.id + 1
       new_slot = Slot.new(name, new_id, self)
       @children << new_slot
@@ -32,6 +44,7 @@ module PMVpn
 
     # Remove a slot by id
     def del_by_id(id)
+      raise ArgumentError, "A slot with id = '#{id}' does not exist" unless has_id(id)
       to_remove = @children.select { |slot| slot.id == id }
       @children.delete_if { |slot| slot.id == id }
       save

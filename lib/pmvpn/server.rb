@@ -6,7 +6,7 @@ module PMVpn
   class Server
 
     attr_reader :settings
-    
+
     public
     # Constructor
     def initialize
@@ -23,14 +23,22 @@ Poor Man Vpn Server
 
     # Return new slot configurations
     def connect(params = nil)
-      slot = @slots.add(params[0])
-      print YAML::dump(slot.data) if slot
+      begin
+        slot = @slots.add(params[0])
+        print YAML::dump(slot.data) if slot
+      rescue Exception => e
+        die e.message
+      end
     end
 
     # Return new slot configurations
     def disconnect(params = nil)
-      slot = @slots.del_by_id(params[0].to_i)
-      print YAML::dump(slot.data) if slot
+      begin
+        slot = @slots.del_by_id(params[0].to_i)
+        print YAML::dump(slot.data) if slot
+      rescue Exception => e
+        die e.message
+      end
     end
 
     private
