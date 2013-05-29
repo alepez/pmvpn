@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'pmvpn/manager'
+
+manager = PMVpn::Manager.new
+if ARGV.length > 0 && manager.respond_to?(ARGV[0])
+  manager.method(ARGV[0]).call(ARGV.drop(1))
+else
+  manager.help
+end

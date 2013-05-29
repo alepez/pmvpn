@@ -15,12 +15,12 @@ module PMVpn
 
     # Remote port
     def remote_port
-      @slots.server.settings['port_start'] + (id * 3)
+      @slots.parent.settings['port_start'] + (id * 3)
     end
 
     # Monitor port
     def monitor_port
-      @slots.server.settings['port_start'] + (id * 3) + 1
+      @slots.parent.settings['port_start'] + (id * 3) + 1
     end
 
     def data

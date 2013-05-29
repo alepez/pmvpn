@@ -4,14 +4,14 @@ require 'pmvpn/slot'
 
 module PMVpn
 
-  attr_reader :server
+  attr_reader :parent
   class Slots
 
     @@db = "#{Dir.home}/.config/pmvpn/server.slots"
     # Constructor
-    def initialize(server)
+    def initialize(parent)
       @children = load
-      @server = server
+      @parent = parent
     end
 
     # Return an array with slots data
