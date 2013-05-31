@@ -22,16 +22,27 @@ module PMVpn
       end
       print "+-----+----------------------+\n"
     end
-    
+
     def clear(params = nil)
       @slots.clear
     end
 
     # Show usage
     def help(params = nil)
-      puts <<-eos
+      puts %q{
 Poor Man Vpn Manager
-      eos
+====================
+
+list
+    List all slots
+
+clear
+    Clear all slots without disconnecting
+
+disconnect_all
+    Disconnect all slots and clear
+
+      }
     end
 
     private

@@ -16,9 +16,11 @@ module PMVpn
 
     # Show usage
     def help(params = nil)
-      puts <<-eos
+      puts %q{
 Poor Man Vpn Server
-      eos
+===================
+
+      }
     end
 
     # Return new slot configurations
