@@ -25,8 +25,9 @@ Poor Man Vpn Server
 
     # Return new slot configurations
     def connect(params = nil)
+      name = params[0]
       begin
-        slot = @slots.add(params[0])
+        slot = @slots.add(name)
         print YAML::dump(slot.data) if slot
       rescue Exception => e
         die e.message
@@ -35,8 +36,9 @@ Poor Man Vpn Server
 
     # Return new slot configurations
     def disconnect(params = nil)
+      id = params[0].to_i
       begin
-        slot = @slots.del_by_id(params[0].to_i)
+        slot = @slots.del_by_id(id)
         print YAML::dump(slot.data) if slot
       rescue Exception => e
         die e.message
